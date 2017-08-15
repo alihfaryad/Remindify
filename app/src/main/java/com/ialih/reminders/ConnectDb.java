@@ -48,7 +48,11 @@ public class ConnectDb extends SQLiteOpenHelper {
         values.put(TBL_CLM_REMINDER, reminder.getReminder());
         values.put(TBL_CLM_DATE, reminder.getDate());
         values.put(TBL_CLM_TIME, reminder.getTime());
-        values.put(TBL_CLM_STATUS, reminder.getStatus());
+        if (reminder.getStatus()){
+            values.put(TBL_CLM_STATUS, 1);
+        } else {
+            values.put(TBL_CLM_STATUS, 0);
+        }
         db.insert(DB_TBL_NAME, null, values);
         db.close();
     }
@@ -65,7 +69,11 @@ public class ConnectDb extends SQLiteOpenHelper {
         values.put(TBL_CLM_REMINDER, reminder.getReminder());
         values.put(TBL_CLM_DATE, reminder.getDate());
         values.put(TBL_CLM_TIME, reminder.getTime());
-        values.put(TBL_CLM_STATUS, reminder.getStatus());
+        if (reminder.getStatus()){
+            values.put(TBL_CLM_STATUS, 1);
+        } else {
+            values.put(TBL_CLM_STATUS, 0);
+        }
 
         // updating row
         db.update(DB_TBL_NAME, values, TBL_CLM_ID + " = ?", new String[] { String.valueOf(reminder.getId()) });
@@ -86,7 +94,11 @@ public class ConnectDb extends SQLiteOpenHelper {
                 reminder.setReminder(cursor.getString(1));
                 reminder.setDate(cursor.getString(2));
                 reminder.setTime(cursor.getString(3));
-                reminder.setStatus(Boolean.parseBoolean(cursor.getString(4)));
+                if (Integer.valueOf(cursor.getString(4)) == 1){
+                    reminder.setStatus(true);
+                } else {
+                    reminder.setStatus(false);
+                }
                 // Adding contact to list
                 reminderList.add(reminder);
             } while (cursor.moveToNext());

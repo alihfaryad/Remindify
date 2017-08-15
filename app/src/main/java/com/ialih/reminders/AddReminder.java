@@ -2,12 +2,10 @@ package com.ialih.reminders;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.view.View;
@@ -20,10 +18,8 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by ali on 27/07/2017.
@@ -35,6 +31,7 @@ public class AddReminder extends Activity {
     DatePickerDialog.OnDateSetListener datePickerListener;
     TimePickerDialog.OnTimeSetListener timePickerListener;
     RadioGroup dateGroup, timeGroup;
+    RadioButton todaybtn, tomorrowbtn, datepickerbtn, time9, time12, time3, timepickerbtn;
     TextView displayDate, displayTime;
     RelativeLayout reminderDisplay;
     ImageView getData, displayReminderDelete;
@@ -56,6 +53,13 @@ public class AddReminder extends Activity {
         displayTime = (TextView) findViewById(R.id.ar_displayTime);
         dateGroup = (RadioGroup) findViewById(R.id.ar_date);
         timeGroup = (RadioGroup) findViewById(R.id.ar_time);
+        todaybtn = (RadioButton) findViewById(R.id.ar_date_today);
+        tomorrowbtn = (RadioButton) findViewById(R.id.ar_date_tomorrow);
+        datepickerbtn = (RadioButton) findViewById(R.id.ar_setDate);
+        time9 = (RadioButton) findViewById(R.id.ar_time_9);
+        time12 = (RadioButton) findViewById(R.id.ar_time_12);
+        time3 = (RadioButton) findViewById(R.id.ar_time_3);
+        timepickerbtn = (RadioButton) findViewById(R.id.ar_setTime);
         datePickerButton = (Button) findViewById(R.id.ar_setDate);
         timePickerButton = (Button) findViewById(R.id.ar_setTime);
         getReminder = (EditText) findViewById(R.id.ar_new);
@@ -67,9 +71,8 @@ public class AddReminder extends Activity {
                 String getreminder = getReminder.getText().toString();
                 String getDate = displayDate.getText().toString();
                 String getTime = displayTime.getText().toString();
-                Boolean status = false;
 
-                db.addReminder(new Reminder(getreminder, getDate, getTime, status));
+                db.addReminder(new Reminder(getreminder, getDate, getTime, false));
 
                 //going back to MainActivity
                 Intent goToMainActivity = new Intent(AddReminder.this, MainActivity.class);
@@ -80,7 +83,16 @@ public class AddReminder extends Activity {
         displayReminderDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                todaybtn.setChecked(false);
+                tomorrowbtn.setChecked(false);
+                datepickerbtn.setChecked(false);
+                time9.setChecked(false);
+                time12.setChecked(false);
+                time3.setChecked(false);
+                timepickerbtn.setChecked(false);
+                displayDate.setText("");
+                displayTime.setText("");
+                reminderDisplay.setVisibility(View.GONE);
             }
         });
 

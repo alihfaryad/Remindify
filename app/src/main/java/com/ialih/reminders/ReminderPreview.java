@@ -19,13 +19,13 @@ import java.util.ArrayList;
  */
 
 public class ReminderPreview extends BaseAdapter {
-    Context context;
-    ArrayList<Integer> id = new ArrayList<Integer>();
-    ArrayList<String> reminder = new ArrayList<String>();
-    ArrayList<String> time = new ArrayList<String>();
-    ArrayList<String> date = new ArrayList<String>();
-    ArrayList<Boolean> status = new ArrayList<Boolean>();
-    Integer count;
+    private Context context;
+    private ArrayList<Integer> id = new ArrayList<Integer>();
+    private ArrayList<String> reminder = new ArrayList<String>();
+    private ArrayList<String> time = new ArrayList<String>();
+    private ArrayList<String> date = new ArrayList<String>();
+    private ArrayList<Boolean> status = new ArrayList<Boolean>();
+    private Integer count;
 
     public ReminderPreview(Context getContext, ArrayList<Integer> getId, ArrayList<String> getReminder, ArrayList<String> getDate, ArrayList<String> getTime, ArrayList<Boolean> getStatus, String getCount){
         context = getContext;

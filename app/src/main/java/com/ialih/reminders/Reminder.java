@@ -5,9 +5,9 @@ package com.ialih.reminders;
  */
 
 public class Reminder {
-    Integer id;
-    String reminder, date, time;
-    Boolean status;
+    private Integer id;
+    private String reminder, date, time;
+    private Boolean status;
 
     public Reminder(){}
 

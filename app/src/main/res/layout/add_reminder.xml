@@ -198,7 +198,7 @@
             android:layout_below="@id/ar_time"
             android:layout_marginTop="20dp"
             android:padding="10dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/ar_reminderDisplay">
             <ImageView
                 android:layout_width="match_parent"
